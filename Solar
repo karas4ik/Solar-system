@@ -1,0 +1,89 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar System Simulation</title>
+    <style>
+        /* Add some basic styling to make it look like a solar system */
+        body {
+            background-color: #000;
+            font-family: Arial, sans-serif;
+        }
+        .solar-system {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .planet {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .planet:hover {
+            box-shadow: 0 0 10px #fff;
+        }
+        .planet-info {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            display: none;
+        }
+        .planet-info.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="solar-system">
+        <!-- Sun -->
+        <div class="sun" style="width: 100px; height: 100px; background-color: #ffff00; border-radius: 50%;"></div>
+        
+        <!-- Planets -->
+        <div class="planet mercury" style="width: 20px; height: 20px; background-color: #ccc; left: 150px; top: 50px;">
+            <div class="planet-info">
+                <h2>Mercury</h2>
+                <p>Mercury is the smallest planet in our solar system...</p>
+            </div>
+        </div>
+        <div class="planet venus" style="width: 30px; height: 30px; background-color: #fff; left: 250px; top: 100px;">
+            <div class="planet-info">
+                <h2>Venus</h2>
+                <p>Venus is the second planet from the Sun...</p>
+            </div>
+        </div>
+        <!-- Add more planets here -->
+        
+        <!-- JavaScript to animate the planets and show planet info on click -->
+        <script>
+            const planets = document.querySelectorAll('.planet');
+            const sun = document.querySelector('.sun');
+            
+            // Animate the planets
+            function animatePlanets() {
+                planets.forEach((planet) => {
+                    planet.style.transform = `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px)`;
+                });
+                requestAnimationFrame(animatePlanets);
+            }
+            animatePlanets();
+            
+            // Show planet info on click
+            planets.forEach((planet) => {
+                planet.addEventListener('click', () => {
+                    planet.querySelector('.planet-info').classList.add('show');
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>
